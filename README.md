@@ -37,7 +37,7 @@ Design priorities:
 ## Tech stack
 
 - Static HTML, CSS, JS at the repo root. No framework, no bundler, no build step.
-- Self-hosted Fraunces and Inter fonts in `assets/fonts/`.
+- Self-hosted Inter font (four weights) in `assets/fonts/`.
 - Images optimized via `scripts/optimize-images.sh` (uses macOS `sips` and `cwebp`).
 - Hosted on GitHub Pages, deploy from a branch, branch root.
 - No backend. Contact happens via `mailto:` to paul@blueridgegoldwings.com.
@@ -57,8 +57,7 @@ blue_ridge_gold_wings/
 │   ├── css/main.css
 │   ├── js/main.js
 │   ├── fonts/
-│   │   ├── Fraunces-{Regular,SemiBold,Bold}.woff2
-│   │   └── Inter-{Regular,Medium,SemiBold}.woff2
+│   │   └── Inter-{Regular,Medium,SemiBold,Bold}.woff2
 │   └── images/
 │       ├── hero/
 │       └── content/
