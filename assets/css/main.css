@@ -589,3 +589,9 @@ section { padding-block: var(--s-7); }
   font-size: 0.9375rem;
   color: var(--c-ink);
 }
+
+/* ---------- 20. 404 page ---------- */
+.error-page { padding-block: var(--s-7) var(--s-8); }
+.error-page__inner { max-width: 640px; margin-inline: auto; text-align: left; }
+.error-page h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: var(--s-3); }
+.error-page p { font-size: 1.0625rem; }
