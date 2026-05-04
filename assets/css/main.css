@@ -192,3 +192,109 @@ section { padding-block: var(--s-7); }
     transition: none;
   }
 }
+
+/* ---------- 7. Site header ---------- */
+.site-header {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 10;
+  padding: var(--s-3) 0;
+  color: var(--c-cream);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.wordmark {
+  font-family: var(--f-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: inherit;
+}
+.wordmark .accent { color: var(--c-gold); }
+
+.nav-toggle {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  padding: var(--s-1) var(--s-2);
+  cursor: pointer;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-toggle[aria-expanded="true"] + .site-nav { display: flex; }
+
+.site-nav {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  background: var(--c-navy);
+  flex-direction: column;
+  padding: var(--s-3);
+  gap: var(--s-2);
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+}
+@media (min-width: 640px) {
+  .nav-toggle { display: none; }
+  .site-nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: transparent;
+    padding: 0;
+    gap: var(--s-4);
+  }
+}
+.site-nav a {
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 200ms ease;
+}
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { border-bottom-color: var(--c-gold); }
+
+/* On non-hero pages, the header sits on cream and uses ink color. */
+.site-header--solid {
+  position: static;
+  color: var(--c-ink);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.site-header--solid .site-nav {
+  background: var(--c-cream);
+  color: var(--c-ink);
+}
+
+/* ---------- 8. Site footer ---------- */
+.site-footer {
+  background: var(--c-cream);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-block: var(--s-5);
+  font-size: 0.9375rem;
+  color: var(--c-mute);
+}
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  align-items: flex-start;
+}
+@media (min-width: 640px) {
+  .site-footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.site-footer nav {
+  display: flex;
+  gap: var(--s-3);
+}
+.site-footer a:hover { color: var(--c-navy); }
