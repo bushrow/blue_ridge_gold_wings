@@ -2,3 +2,4 @@
 _source/
 node_modules/
 *.log
+.claude/settings.local.json
