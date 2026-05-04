@@ -25,11 +25,23 @@
   </header>
 
   <main id="main">
-    <!-- Hero placeholder, fleshed out in Task 7 -->
     <section class="hero" aria-label="Introduction">
-      <div class="container">
-        <h1>Navy Trained. Airline Experienced. On Your Flight Deck.</h1>
+      <picture class="hero__image">
+        <source media="(min-width: 960px)"
+                srcset="assets/images/hero/blue-ridge-cockpit-1920.webp"
+                type="image/webp">
+        <source srcset="assets/images/hero/blue-ridge-cockpit-960.webp"
+                type="image/webp">
+        <img src="assets/images/hero/blue-ridge-cockpit-1920.jpg"
+             alt="Aerial view of the Blue Ridge mountains seen from an aircraft cockpit at altitude.">
+      </picture>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="container hero__content">
+        <hr class="gold-rule" aria-hidden="true">
+        <h1>Navy Trained.<br>Airline Experienced.<br>On Your Flight Deck.</h1>
+        <p class="hero__sub">Contract pilot services for aircraft owners across the Mid-Atlantic.</p>
       </div>
+      <a class="hero__scroll" href="#opening" aria-label="Scroll to next section">&#x25BC;</a>
     </section>
   </main>
 
