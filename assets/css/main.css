@@ -404,3 +404,29 @@ section { padding-block: var(--s-7); }
   height: 1em;
   background: var(--c-gold);
 }
+
+/* ---------- 12. Section head pattern ---------- */
+.section-head {
+  margin-bottom: var(--s-6);
+}
+.section-head h2 { margin-bottom: 0; }
+
+/* ---------- 13. Services ---------- */
+.services { background: var(--c-cream); }
+.service {
+  display: grid;
+  gap: var(--s-4);
+  align-items: center;
+  padding-block: var(--s-6);
+}
+.service + .service { border-top: 1px solid rgba(0,0,0,0.06); }
+@media (min-width: 960px) {
+  .service { grid-template-columns: 1fr 1fr; gap: var(--s-7); padding-block: var(--s-7); }
+  .service--left .service__media { order: 1; }
+  .service--left .service__copy  { order: 2; }
+  .service--right .service__media { order: 2; }
+  .service--right .service__copy  { order: 1; }
+}
+.service__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.service__copy h3 { font-size: 1.875rem; }
+.service__copy p { color: var(--c-ink); }
