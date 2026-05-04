@@ -130,8 +130,8 @@ a { text-decoration: none; }
 
 .prose { max-width: var(--prose-w); }
 
-section { padding-block: var(--s-7); }
-@media (min-width: 960px) { section { padding-block: var(--s-8); } }
+section { padding-block: var(--s-6); }
+@media (min-width: 960px) { section { padding-block: var(--s-7); } }
 
 /* ---------- 6. Utilities ---------- */
 .eyebrow {
@@ -370,95 +370,126 @@ section { padding-block: var(--s-7); }
 }
 .hero__scroll:hover { opacity: 1; }
 
-/* ---------- 10. Opening ---------- */
-.opening .prose { margin-inline: auto; }
-.opening p {
-  font-size: 1.125rem;
+/* ---------- 10. Lead-in (intro + bio + credentials, sits flush after the hero) ---------- */
+.lead-in {
+  background: var(--c-cream);
+  padding-block: var(--s-5) var(--s-6);
+}
+@media (min-width: 960px) {
+  .lead-in { padding-block: var(--s-6) var(--s-7); }
+}
+.lead-in__grid {
+  display: grid;
+  gap: var(--s-5);
+  align-items: start;
+}
+@media (min-width: 960px) {
+  .lead-in__grid { grid-template-columns: 5fr 7fr; gap: var(--s-7); }
+}
+.lead-in__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.lead-in__copy .eyebrow { margin-top: 0; }
+.lead-in__copy h2 {
+  font-size: clamp(1.875rem, 3.2vw, 2.75rem);
+  margin-bottom: var(--s-3);
+}
+.lead-in__copy p {
+  font-size: 1.0625rem;
   line-height: 1.65;
 }
-.opening p:first-child::first-letter {
-  /* Restrained editorial flourish: slightly larger first letter. */
-  font-family: var(--f-serif);
-  font-weight: 600;
-  font-size: 1.4em;
-  color: var(--c-navy);
-}
-
-/* ---------- 11. Credentials strip ---------- */
-.credentials { padding-block: var(--s-5); border-block: 1px solid rgba(0,0,0,0.08); }
-.credentials__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.lead-in__credentials {
+  margin: var(--s-4) 0 var(--s-3);
+  display: grid;
   gap: 0;
+  border-top: 1px solid rgba(0,0,0,0.10);
+}
+.lead-in__credentials > div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) 1fr;
+  gap: var(--s-3);
+  padding-block: var(--s-2);
+  border-bottom: 1px solid rgba(0,0,0,0.10);
+}
+.lead-in__credentials dt {
   font-family: var(--f-sans);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--c-mute);
+  margin: 0;
 }
-.credentials__list li {
-  padding: var(--s-2) var(--s-3);
-  position: relative;
+.lead-in__credentials dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--c-ink);
 }
-.credentials__list li + li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 1em;
-  background: var(--c-gold);
-}
+.lead-in__cta { margin-top: var(--s-3); margin-bottom: 0; }
 
-/* ---------- 12. Section head pattern ---------- */
+/* ---------- 11. Section head pattern ---------- */
 .section-head {
-  margin-bottom: var(--s-6);
+  margin-bottom: var(--s-5);
 }
 .section-head h2 { margin-bottom: 0; }
 
-/* ---------- 13. Services ---------- */
-.services { background: var(--c-cream); }
+/* ---------- 12. Services ---------- */
+.services {
+  background: var(--c-cream);
+  padding-block: var(--s-6) 0;
+}
+@media (min-width: 960px) {
+  .services { padding-block: var(--s-7) 0; }
+}
+.services .container { padding-bottom: 0; }
+
 .service {
   display: grid;
   gap: var(--s-4);
   align-items: center;
-  padding-block: var(--s-6);
+  padding-block: var(--s-5);
 }
 .service + .service { border-top: 1px solid rgba(0,0,0,0.06); }
 @media (min-width: 960px) {
-  .service { grid-template-columns: 1fr 1fr; gap: var(--s-7); padding-block: var(--s-7); }
+  .service { grid-template-columns: 1fr 1fr; gap: var(--s-6); padding-block: var(--s-6); }
   .service--left .service__media { order: 1; }
   .service--left .service__copy  { order: 2; }
   .service--right .service__media { order: 2; }
   .service--right .service__copy  { order: 1; }
 }
 .service__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.service__copy h3 { font-size: 1.875rem; }
+.service__copy h3 { font-size: 1.75rem; margin-bottom: var(--s-2); }
 .service__copy p { color: var(--c-ink); }
 
-/* ---------- 14. About teaser ---------- */
-.about-teaser { background: var(--c-paper); }
-.about-teaser__grid {
-  display: grid;
-  gap: var(--s-5);
-  align-items: center;
+/* Navy band variant for service 02. Background bleeds full-viewport via pseudo-element. */
+.service--navy {
+  position: relative;
+  isolation: isolate;
+  color: var(--c-cream);
+  border-top: 0;
+  padding-block: var(--s-6);
+  margin-block: var(--s-3) 0;
 }
 @media (min-width: 960px) {
-  .about-teaser__grid { grid-template-columns: 5fr 7fr; gap: var(--s-7); }
+  .service--navy { padding-block: var(--s-7); margin-block: var(--s-4) 0; }
 }
-.about-teaser__media img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  max-width: 460px;
+.service--navy::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline: calc(50% - 50vw);
+  background: var(--c-navy);
+  z-index: -1;
 }
-.about-teaser__copy h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.service--navy + .service { border-top: 0; margin-top: var(--s-3); }
+@media (min-width: 960px) {
+  .service--navy + .service { margin-top: var(--s-4); }
+}
+.service--navy h3 { color: var(--c-cream); }
+.service--navy .eyebrow { color: rgba(245, 240, 230, 0.65); }
+.service--navy .service__copy p { color: rgba(245, 240, 230, 0.92); }
 
 /* ---------- 15. Contact ---------- */
 .contact {
