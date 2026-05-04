@@ -1,0 +1,194 @@
+/* =========================================================
+   Blue Ridge Gold Wings, LLC.
+   main.css
+   Sections: tokens, fonts, reset, typography, layout primitives,
+             components, page sections, utilities.
+   ========================================================= */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* Colors */
+  --c-navy:  #14233f;
+  --c-gold:  #b49342;
+  --c-cream: #f5f0e6;
+  --c-paper: #fbf8f1;
+  --c-ink:   #1c1b18;
+  --c-mute:  #7d756a;
+  --c-white: #ffffff;
+
+  /* Spacing scale (8px base) */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+
+  /* Type families */
+  --f-serif: "Fraunces", Georgia, "Iowan Old Style", serif;
+  --f-sans:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Layout */
+  --max-w: 1180px;
+  --prose-w: 680px;
+}
+
+/* ---------- 2. Font faces ---------- */
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/Fraunces-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- 3. Reset (light) ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img, picture, video { max-width: 100%; height: auto; display: block; }
+ul, ol { padding-left: 1.25rem; }
+button { font: inherit; }
+a { color: inherit; }
+
+/* ---------- 4. Base typography ---------- */
+html {
+  font-family: var(--f-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--c-ink);
+  background: var(--c-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--f-serif);
+  font-weight: 600;
+  color: var(--c-navy);
+  margin: 0 0 var(--s-3);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+}
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+h3 { font-size: 1.5rem; }
+
+p { margin: 0 0 var(--s-3); }
+p:last-child { margin-bottom: 0; }
+
+a { text-decoration: none; }
+
+/* ---------- 5. Layout primitives ---------- */
+.container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--s-3);
+}
+
+.prose { max-width: var(--prose-w); }
+
+section { padding-block: var(--s-7); }
+@media (min-width: 960px) { section { padding-block: var(--s-8); } }
+
+/* ---------- 6. Utilities ---------- */
+.eyebrow {
+  font-family: var(--f-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-mute);
+  margin: 0 0 var(--s-2);
+}
+.gold-rule {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--c-gold);
+  border: 0;
+  margin: 0 0 var(--s-3);
+}
+.gold-rule--center { margin-inline: auto; }
+.link-gold {
+  color: var(--c-navy);
+  border-bottom: 1px solid var(--c-gold);
+  transition: color 200ms ease;
+}
+.link-gold:hover { color: var(--c-gold); }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--c-navy);
+  color: var(--c-white);
+  padding: var(--s-2) var(--s-3);
+  z-index: 100;
+}
+.skip-link:focus { top: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 3px;
+}
+
+/* Fade-up motion */
+[data-fade-up] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+[data-fade-up].is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-fade-up] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
