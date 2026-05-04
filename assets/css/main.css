@@ -358,3 +358,17 @@ section { padding-block: var(--s-7); }
   transition: opacity 200ms ease;
 }
 .hero__scroll:hover { opacity: 1; }
+
+/* ---------- 10. Opening ---------- */
+.opening .prose { margin-inline: auto; }
+.opening p {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+.opening p:first-child::first-letter {
+  /* Restrained editorial flourish: slightly larger first letter. */
+  font-family: var(--f-serif);
+  font-weight: 600;
+  font-size: 1.4em;
+  color: var(--c-navy);
+}
