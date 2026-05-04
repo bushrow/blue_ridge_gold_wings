@@ -36,62 +36,67 @@ Design priorities:
 
 ## Tech stack
 
-- **Static HTML / CSS / JS.** No framework required. GitHub Pages serves the files as-is.
-- No build step assumed at this stage. If one is added later (Eleventy, Astro, etc.), it must produce a plain static output compatible with GitHub Pages.
+- Static HTML, CSS, JS at the repo root. No framework, no bundler, no build step.
+- Self-hosted Fraunces and Inter fonts in `assets/fonts/`.
+- Images optimized via `scripts/optimize-images.sh` (uses macOS `sips` and `cwebp`).
+- Hosted on GitHub Pages, deploy from a branch, branch root.
 - No backend. Contact happens via `mailto:` to paul@blueridgegoldwings.com.
 
 ## Repository layout
 
 ```
 blue_ridge_gold_wings/
-├── README.md              ← this file
-├── CLAUDE.md              ← guidance for Claude when working in this repo
-├── images/                ← source photography (see inventory below)
-├── reference_code/        ← exported HTML of the current WordPress site
-└── website/               ← the new static site (currently empty)
+├── README.md
+├── CLAUDE.md
+├── .gitignore
+├── .nojekyll
+├── index.html
+├── about.html
+├── 404.html
+├── assets/
+│   ├── css/main.css
+│   ├── js/main.js
+│   ├── fonts/
+│   │   ├── Fraunces-{Regular,SemiBold,Bold}.woff2
+│   │   └── Inter-{Regular,Medium,SemiBold}.woff2
+│   └── images/
+│       ├── hero/
+│       └── content/
+├── design/
+│   ├── 2026-05-03-blue-ridge-gold-wings-design.md
+│   └── 2026-05-03-blue-ridge-gold-wings-plan.md
+└── scripts/
+    └── optimize-images.sh
 ```
 
-### `images/` inventory
+Local-only material (gitignored, kept on disk for re-running the optimization step):
 
-| File | Subject |
-| --- | --- |
-| `Blue-ridge-from-the-cockpit.png` | Aerial Blue Ridge view from the cockpit. Hero background. |
-| `headshot_smiling.jpeg` | Paul, contemporary headshot |
-| `cockpit_flying.jpeg` | Paul flying, cockpit view |
-| `cockpit_right_seat.jpeg` | Paul in the right seat |
-| `current_commercial_airline.png` | Paul with current commercial airline aircraft |
-| `glider_cockpit.jpeg` | Glider cockpit shot |
-| `pilatus-with-australia-background.jpg` | Pilatus PC-12 with scenic backdrop |
-| `young_by_plane.jpeg` | Early-career, by aircraft |
-| `young_by_plane_on_ladder.jpeg` | Early-career, on ladder |
-| `young_by_plane_with_flight_helmet.jpeg` | Early-career, with flight helmet |
-| `young_commercial_wings.jpeg` | Early commercial-pilot wings photo |
-| `young_navy_aviator_suite.jpg` | Young Paul in Navy aviator gear |
-
-The early-career imagery is a meaningful asset. It lets the bio span "then and now" without leaning on stock photography.
-
-### `reference_code/`
-
-`current_wordpress_site.html` is the saved markup from the existing live WordPress site. It is the canonical source of truth for **content** (bio copy, services, tagline, contact). It is *not* a design reference to be copied. The new site is a redesign, not a port.
-
-### `website/`
-
-Target output directory for the new static site. Currently empty. HTML, CSS, and JS go here.
+```
+_source/
+├── images/                         (original full-size photography)
+└── reference/
+    └── current_wordpress_site.html (preserved WordPress export)
+```
 
 ## Local preview
 
 Any static-file server works. From the repo root:
 
 ```bash
-cd website
 python3 -m http.server 8000
-# → http://localhost:8000
 ```
+
+Open `http://localhost:8000/` in a browser. VS Code's Live Server extension also works against the repo root.
 
 ## Deployment
 
-GitHub Pages, served from the `website/` directory (or `docs/`, or a `gh-pages` branch). Final choice TBD when the repo is pushed.
+GitHub Pages, deploy from a branch, branch root. The `.nojekyll` file at the root tells Pages to skip Jekyll processing.
+
+To configure: in the repo's GitHub Settings, choose Pages, set Source to "Deploy from a branch," choose `main`, and root (`/`). Pages will publish at `https://<username>.github.io/<repo-name>/`. A custom domain can be added later by creating a `CNAME` file at the root and pointing DNS.
 
 ## Status
 
-Greenfield. The `website/` directory is empty. Design and implementation are still to be done.
+Site is implemented. Ongoing tasks before launch:
+- Replace placeholder text wordmark with the final logo asset (planned to be provided by Paul).
+- Optional: confirm pull-quote text on the about page.
+- Configure GitHub Pages and (optional) custom domain.

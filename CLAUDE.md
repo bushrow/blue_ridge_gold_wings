@@ -4,7 +4,7 @@ Guidance for Claude when working in this repository.
 
 ## What this project is
 
-A static marketing website for **Blue Ridge Gold Wings, LLC**. The business is a one-person contract pilot service run by Paul Bushrow, a former Navy carrier aviator turned regional airline pilot, based in Charlottesville, Virginia. The site replaces an existing WordPress site (preserved in `reference_code/`) with a hand-built static site hosted on GitHub Pages.
+A static marketing website for **Blue Ridge Gold Wings, LLC**. The business is a one-person contract pilot service run by Paul Bushrow, a former Navy carrier aviator turned regional airline pilot, based in Charlottesville, Virginia. The site replaces an existing WordPress site (preserved in `_source/reference/`) with a hand-built static site hosted on GitHub Pages.
 
 See [README.md](README.md) for the full business background, services, and credentials.
 
@@ -51,7 +51,7 @@ The audience is aircraft owners. They are experienced, often senior, and frequen
 
 **Avoid:**
 - Generic "AI-built website" aesthetic. No centered hero text on a gradient, no three-column feature grid with emoji-style icons.
-- Stock photography. The `images/` directory has plenty of authentic material.
+- Stock photography. The `_source/images/` directory has plenty of authentic material (optimized versions are in `assets/images/`).
 - Heavy parallax, scroll-jacking, hero video autoplay, or other gimmicks. Senior clientele should feel respected, not flashed.
 - Military costume. No flag overlays, no stenciled-camo fonts, no callsign-style headings.
 - Aggressive minimalism that strips warmth and personality.
@@ -74,17 +74,18 @@ The current site uses system fonts. The redesign should pick a deliberate type p
 
 ## Content source of truth
 
-`reference_code/current_wordpress_site.html` is the canonical source for **copy**: bio, services descriptions, tagline, contact info. Pull content from there. Don't invent credentials, hours, ratings, or service-area claims. If something needs to change, ask before rewriting.
+`_source/reference/current_wordpress_site.html` is the canonical source for **copy**: bio, services descriptions, tagline, contact info. Pull content from there. Don't invent credentials, hours, ratings, or service-area claims. If something needs to change, ask before rewriting.
 
 The reference file is *not* a design template. The new site is a redesign.
 
 ## Working in this repo
 
-- The new site lives in `website/`. Start there.
-- Source images are in `images/`, including the hero background `Blue-ridge-from-the-cockpit.png`.
-- Don't modify files in `reference_code/`. That directory is a frozen snapshot.
-- Optimize images before referencing them in HTML. Several originals in `images/` are multi-megabyte (the hero PNG is ~1.7 MB; the commercial-airline shot is ~5.5 MB). Serve appropriately sized derivatives.
-- **Logo / wordmark:** no final asset yet. Paul will provide one later in development. Use a clear, obviously temporary placeholder (a simple text wordmark or a labeled `<!-- LOGO PLACEHOLDER -->` block) so it is easy to swap in.
+- The site lives at the repo root. Entry points are `index.html`, `about.html`, and `404.html`.
+- Stylesheet: `assets/css/main.css`. JS: `assets/js/main.js`. Fonts: `assets/fonts/`. Optimized images: `assets/images/{hero,content}/`.
+- Original photography and the WordPress export live in `_source/` (gitignored, local only). Never reference `_source/` paths from served HTML.
+- To regenerate optimized images, run `scripts/optimize-images.sh`. Requires macOS (`sips`) and `cwebp` (via `brew install webp`).
+- Don't introduce a build step casually. The site is static by design.
+- **Logo / wordmark:** placeholder text wordmark in HTML for now. Paul will provide the asset; swap in the `<a class="wordmark">` in `index.html`, `about.html`, and `404.html` (and update the footer wordmark in each), plus add a `<link rel="icon">`.
 
 ## Contact
 
