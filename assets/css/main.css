@@ -372,3 +372,35 @@ section { padding-block: var(--s-7); }
   font-size: 1.4em;
   color: var(--c-navy);
 }
+
+/* ---------- 11. Credentials strip ---------- */
+.credentials { padding-block: var(--s-5); border-block: 1px solid rgba(0,0,0,0.08); }
+.credentials__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  font-family: var(--f-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-mute);
+}
+.credentials__list li {
+  padding: var(--s-2) var(--s-3);
+  position: relative;
+}
+.credentials__list li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1em;
+  background: var(--c-gold);
+}
