@@ -100,3 +100,10 @@ Site is implemented. Ongoing tasks before launch:
 - Replace placeholder text wordmark with the final logo asset (planned to be provided by Paul).
 - Optional: confirm pull-quote text on the about page.
 - Configure GitHub Pages and (optional) custom domain.
+
+## Going live (one-time setup)
+
+1. Push the repo to GitHub: `git remote add origin git@github.com:<owner>/blue_ridge_gold_wings.git && git push -u origin main`.
+2. In the repo's GitHub Settings, Pages, set Source to "Deploy from a branch," branch `main`, folder `/ (root)`.
+3. Wait for the first build to publish (under a minute). The site will be live at `https://<owner>.github.io/blue_ridge_gold_wings/`.
+4. To add a custom domain: create a `CNAME` file at the repo root containing the domain, configure DNS per GitHub's docs, and re-verify in Settings, Pages.
