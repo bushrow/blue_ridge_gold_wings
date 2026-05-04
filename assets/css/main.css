@@ -375,112 +375,155 @@ section { padding-block: var(--space-md); }
 }
 .hero__scroll:hover { opacity: 1; }
 
-/* ---------- 10. Lead-in (intro + bio + credentials, sits flush after the hero) ---------- */
-.lead-in {
+/* ---------- 10. Article (pure-type centered chapter) ---------- */
+.article {
   background: var(--c-cream);
-  padding-block: var(--s-5) var(--s-6);
 }
-@media (min-width: 960px) {
-  .lead-in { padding-block: var(--s-6) var(--s-7); }
+.article__inner {
+  max-width: var(--prose-w);
+  margin-inline: auto;
+  padding-inline: var(--s-3);
+  text-align: center;
 }
-.lead-in__grid {
+.article__inner .gold-rule { margin-inline: auto; }
+.article__inner .eyebrow { display: block; }
+.article__inner h2 { margin-bottom: var(--s-3); }
+.article__inner p {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+.article__inner p + p { margin-top: var(--s-3); }
+.article__cta { margin-top: var(--s-4); }
+
+/* ---------- 11. Diptyque (paired portrait photos, no text) ---------- */
+.diptyque {
+  padding-block: var(--space-sm);
+  background: var(--c-cream);
+}
+.diptyque__pair {
   display: grid;
-  gap: var(--s-5);
-  align-items: start;
+  gap: var(--s-2);
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--s-3);
 }
-@media (min-width: 960px) {
-  .lead-in__grid { grid-template-columns: 5fr 7fr; gap: var(--s-7); }
+@media (min-width: 760px) {
+  .diptyque__pair { grid-template-columns: 1fr 1fr; gap: 10px; }
 }
-.lead-in__media img {
+.diptyque figure { margin: 0; }
+.diptyque img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
 }
-.lead-in__copy .eyebrow { margin-top: 0; }
-.lead-in__copy h2 {
-  font-size: clamp(1.875rem, 3.2vw, 2.75rem);
-  margin-bottom: var(--s-3);
-}
-.lead-in__copy p {
-  font-size: 1.0625rem;
-  line-height: 1.65;
-}
-.lead-in__credentials {
-  margin: var(--s-4) 0 var(--s-3);
-  display: grid;
-  gap: 0;
-  border-top: 1px solid rgba(0,0,0,0.10);
-}
-.lead-in__credentials > div {
-  display: grid;
-  grid-template-columns: minmax(7rem, 9rem) 1fr;
-  gap: var(--s-3);
-  padding-block: var(--s-2);
-  border-bottom: 1px solid rgba(0,0,0,0.10);
-}
-.lead-in__credentials dt {
-  font-family: var(--f-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--c-mute);
-  margin: 0;
-}
-.lead-in__credentials dd {
-  margin: 0;
-  font-size: 0.9375rem;
-  color: var(--c-ink);
-}
-.lead-in__cta { margin-top: var(--s-3); margin-bottom: 0; }
 
-/* ---------- 11. Section head pattern ---------- */
-.section-head {
-  margin-bottom: var(--s-5);
-}
-.section-head h2 { margin-bottom: 0; }
-
-/* ---------- 12. Services ---------- */
-.services {
-  background: var(--c-cream);
-  padding-block: var(--s-6) 0;
-}
-@media (min-width: 960px) {
-  .services { padding-block: var(--s-7) 0; }
-}
-.services .container { padding-bottom: 0; }
-
+/* ---------- 12. Service blocks (three compositional variants) ---------- */
 .service {
+  padding-block: var(--space-sm);
+  background: var(--c-cream);
+}
+.service__inner {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--s-3);
   display: grid;
   gap: var(--s-4);
   align-items: center;
-  padding-block: var(--s-5);
 }
-.service + .service { border-top: 1px solid rgba(0,0,0,0.06); }
 @media (min-width: 960px) {
-  .service { grid-template-columns: 1fr 1fr; gap: var(--s-6); padding-block: var(--s-6); }
-  .service--left .service__media { order: 1; }
-  .service--left .service__copy  { order: 2; }
-  .service--right .service__media { order: 2; }
-  .service--right .service__copy  { order: 1; }
+  .service__inner {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--s-7);
+  }
+  .service--asymm-right .service__copy  { order: 1; }
+  .service--asymm-right .service__media { order: 2; }
+  .service--asymm-left  .service__media { order: 1; }
+  .service--asymm-left  .service__copy  { order: 2; }
 }
-.service__media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.service__copy h3 { font-size: 1.75rem; margin-bottom: var(--s-2); }
+.service__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.service__copy h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: var(--s-2); }
 .service__copy p { color: var(--c-ink); }
 
-/* Navy band variant for service 02. Background bleeds full-viewport via pseudo-element. */
-.service--navy {
+/* Full-bleed photo variant (service 02). Photo extends edge-to-edge with
+   gradient seams that fade into the cream backgrounds above and below.
+   Text is overlaid on a subtle dark scrim in the lower-left of the photo. */
+.service--full-bleed {
+  position: relative;
+  padding: 0;
+  background: var(--c-cream);
+}
+.service--full-bleed .service__media {
+  position: relative;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.service--full-bleed .service__media picture,
+.service--full-bleed .service__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.service--full-bleed .service__media::before,
+.service--full-bleed .service__media::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 12vh;
+  background: var(--c-cream);
+  pointer-events: none;
+  z-index: 1;
+}
+.service--full-bleed .service__media::before {
+  top: 0;
+  -webkit-mask-image: linear-gradient(black, transparent);
+  mask-image: linear-gradient(black, transparent);
+}
+.service--full-bleed .service__media::after {
+  bottom: 0;
+  -webkit-mask-image: linear-gradient(transparent, black);
+  mask-image: linear-gradient(transparent, black);
+}
+.service--full-bleed .service__overlay {
+  position: absolute;
+  z-index: 2;
+  left: max(var(--s-3), calc(50vw - var(--max-w) / 2 + var(--s-3)));
+  bottom: var(--s-6);
+  max-width: 540px;
+  color: var(--c-cream);
+  background: linear-gradient(
+    to top,
+    rgba(20, 35, 63, 0.78) 0%,
+    rgba(20, 35, 63, 0.55) 70%,
+    rgba(20, 35, 63, 0) 100%
+  );
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  border-radius: 2px;
+}
+.service--full-bleed .service__overlay .eyebrow { color: rgba(245, 240, 230, 0.78); }
+.service--full-bleed .service__overlay h3 { color: var(--c-cream); margin-bottom: var(--s-2); }
+.service--full-bleed .service__overlay p {
+  color: rgba(245, 240, 230, 0.92);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ---------- 13. Navy band (proof statement, full-bleed) ---------- */
+.band--navy {
   position: relative;
   isolation: isolate;
+  background: var(--c-navy);
   color: var(--c-cream);
-  border-top: 0;
-  padding-block: var(--s-6);
-  margin-block: var(--s-3) 0;
+  padding-block: var(--space-sm);
+  text-align: center;
 }
-@media (min-width: 960px) {
-  .service--navy { padding-block: var(--s-7); margin-block: var(--s-4) 0; }
-}
-.service--navy::before {
+.band--navy::before {
   content: "";
   position: absolute;
   inset-block: 0;
@@ -488,25 +531,45 @@ section { padding-block: var(--space-md); }
   background: var(--c-navy);
   z-index: -1;
 }
-.service--navy + .service { border-top: 0; margin-top: var(--s-3); }
-@media (min-width: 960px) {
-  .service--navy + .service { margin-top: var(--s-4); }
+.band--navy__inner {
+  max-width: 920px;
+  margin-inline: auto;
+  padding-inline: var(--s-3);
 }
-.service--navy h3 { color: var(--c-cream); }
-.service--navy .eyebrow { color: rgba(245, 240, 230, 0.65); }
-.service--navy .service__copy p { color: rgba(245, 240, 230, 0.92); }
+.band--navy .gold-rule { margin-inline: auto; margin-bottom: var(--s-3); }
+.band--navy .eyebrow { color: rgba(245, 240, 230, 0.65); margin-bottom: var(--s-3); }
+.band--navy__statement {
+  font-family: var(--f-sans);
+  font-weight: 600;
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--c-cream);
+  margin: 0 0 var(--s-3);
+}
+.band--navy__credentials {
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: rgba(245, 240, 230, 0.7);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
 
-/* ---------- 15. Contact ---------- */
+/* ---------- 14. Contact ---------- */
 .contact {
   background: var(--c-navy);
   color: var(--c-cream);
+  padding-block: var(--space-md);
 }
 .contact h2 { color: var(--c-cream); }
 .contact__inner {
   max-width: 720px;
   margin-inline: auto;
   text-align: center;
+  padding-inline: var(--s-3);
 }
+.contact__inner .gold-rule { margin-inline: auto; }
 .contact__lede {
   font-size: 1.0625rem;
   color: rgba(245, 240, 230, 0.85);
@@ -530,6 +593,31 @@ section { padding-block: var(--space-md); }
   color: rgba(245, 240, 230, 0.65);
   letter-spacing: 0.04em;
   margin: 0;
+}
+
+/* ---------- 15. Site header sticky auto-hide states ---------- */
+/* Default state defined in section 7 above; these add the fixed/hidden states. */
+.site-header.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--c-cream);
+  color: var(--c-ink);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transform: translateY(0);
+  transition: transform 240ms ease;
+  z-index: 50;
+}
+.site-header.is-fixed.is-hidden {
+  transform: translateY(-100%);
+}
+.site-header.is-fixed .site-nav {
+  background: var(--c-cream);
+  color: var(--c-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header.is-fixed { transition: none; }
 }
 
 /* ---------- 16. About page: title block and lede ---------- */
